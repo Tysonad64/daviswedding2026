@@ -9,7 +9,16 @@ body {
   
 }   
 
-#about:hover{
+a{
+    color: aliceblue;
+}
+a:visited{
+    color: aliceblue;
+}
+a:hover{
+    color: #c5cbe1;
+}
+a:active{
     color: #54645dc6;
 }
 
@@ -20,8 +29,6 @@ body {
     font-weight: bold;
     text-shadow: 6px 6px 4px #ae6e55;
 
-
-
      
     padding: 100px;
     padding-top: 100px;
@@ -30,22 +37,25 @@ body {
     
 }
 
-.navbar{
-    -webkit-text-fill-color: aliceblue;
+nav{
     font-size: 24px;
     font-weight: bold;
     text-align: center;
     text-shadow: 3px 3px 2px #ae6e55;
+    text-decoration: none;
+
+    color: aliceblue;
     
     display: flex;
     justify-content: space-evenly;
     
     padding-bottom: 60px;
-
 }
+
 
 #wedpar{
     word-spacing: normal;
+
 }
 
 header{
@@ -80,6 +90,14 @@ button{
     border-width: 5px;
 }
 
+button:hover{
+    color: #c5cbe1;
+}
+
+button:active{
+    background-color: #ae6e55;
+}
+
 .special{
     background-color: #54645dd1;
     text-align: center;
@@ -103,7 +121,14 @@ button{
     font-weight: bold;   
 }
 
-#contact:hover{
+.link#contact{
+    color: aliceblue;
+}
+.link#contact:active{
     color: #54645dc6;
+}
+
+#contact:hover{
+    color: #c5cbe1;
 }
 
