@@ -4,14 +4,26 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+
+  font-family: handlee, sans-serif;
+  
 }   
+
+#about:hover{
+    color: #54645dc6;
+}
 
 #title{
     color: aliceblue;
     text-align: center;
+    font-size: 48px;
     font-weight: bold;
-    
-    padding: 40px;
+    text-shadow: 6px 6px 4px #ae6e55;
+
+
+
+     
+    padding: 100px;
     padding-top: 100px;
     
     margin-top: 0px;
@@ -23,16 +35,12 @@ body {
     font-size: 24px;
     font-weight: bold;
     text-align: center;
+    text-shadow: 3px 3px 2px #ae6e55;
     
     display: flex;
     justify-content: space-evenly;
     
     padding-bottom: 60px;
-
-}
-
-a{
-    text-decoration: none;
 
 }
 
@@ -42,30 +50,60 @@ a{
 
 header{
     background-color: #54645dc6;
+    border: #ae6e55;
+    border-style: outset;
+    border-width: 10px;
 }
 
 button{
-    margin-left: 50%;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 20%;
     margin-bottom: 20%;
     padding: 10px;
 
+    display: flex;
+    justify-content: center;
+
     white-space: nowrap;
     
-    background-color: #c5cbe1;
+    color: aliceblue;
+    background-color: #54645dc6;
+    text-shadow: 3px 3px 2px #ae6e55;
+    font-weight: bold;
+    font-family: handlee, sans-serif;
+
+
+
+    border: #ae6e55;
+    border-style: outset;
+    border-width: 5px;
 }
 
-#special{
+.special{
     background-color: #54645dd1;
     text-align: center;
     color: aliceblue;
     margin-bottom: 0;
+    
+    border: #ae6e55;
+    border-style: outset;
+    border-width: 10px;
+
     padding-bottom: 20px;
     padding-top: 20px;
 }
 
+#h3spec{
+    text-shadow: 3px 3px 2px #ae6e55;
+}
+
 #contact{
-    color: burlywood;
-    background-color: ;
+    color: #ae6e55;
+    font-weight: bold;   
+}
+
+#contact:hover{
+    color: #54645dc6;
 }
 
