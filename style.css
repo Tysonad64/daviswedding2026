@@ -1,25 +1,38 @@
 body {
-  background: url('Wedding-site-photo.jpg') no-repeat center fixed;
+  background: url('engage.jpg');
   background-size: cover;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }   
 
 #title{
     color: aliceblue;
     text-align: center;
+    font-weight: bold;
+    
     padding: 40px;
+    padding-top: 100px;
+    
+    margin-top: 0px;
+    
 }
 
 .navbar{
-    -webkit-text-fill-color: rgb(236, 241, 245);
+    -webkit-text-fill-color: aliceblue;
     font-size: 24px;
     font-weight: bold;
     text-align: center;
-    word-spacing: 20px;
+    
+    display: flex;
+    justify-content: space-evenly;
+    
+    padding-bottom: 60px;
 
-    padding-bottom: 20px;
+}
+
+a{
+    text-decoration: none;
 
 }
 
@@ -28,27 +41,31 @@ body {
 }
 
 header{
-    background-color: #1a2d44be;
-    
+    background-color: #54645dc6;
 }
 
 button{
     margin-left: 50%;
     margin-top: 20%;
     margin-bottom: 20%;
-    white-space: nowrap;
     padding: 10px;
+
+    white-space: nowrap;
+    
+    background-color: #c5cbe1;
 }
 
 #special{
-    background-color: #1a2d44be;
+    background-color: #54645dd1;
     text-align: center;
     color: aliceblue;
-}
-
-footer{
     margin-bottom: 0;
     padding-bottom: 20px;
     padding-top: 20px;
-
 }
+
+#contact{
+    color: burlywood;
+    background-color: ;
+}
+
