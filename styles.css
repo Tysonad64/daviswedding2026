@@ -132,3 +132,20 @@ button:active{
     color: #c5cbe1;
 }
 
+#contact:active{
+    color: #54645dc6;
+}
+
+#contact-header{
+    color: aliceblue;
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    text-shadow: 6px 6px 4px #ae6e55;
+
+     
+    padding: 100px;
+    padding-top: 100px;
+    
+    margin-top: 0px;
+}
