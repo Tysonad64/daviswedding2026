@@ -9,6 +9,9 @@ body {
   
 }   
 
+/* Mostly home page css */
+
+
 a{
     color: aliceblue;
 }
@@ -31,9 +34,9 @@ a:active{
 
      
     padding: 100px;
-    padding-top: 100px;
     
     margin-top: 0px;
+    margin-bottom: auto;
     
 }
 
@@ -63,6 +66,8 @@ header{
     border: #ae6e55;
     border-style: outset;
     border-width: 10px;
+
+    
 }
 
 button{
@@ -90,12 +95,21 @@ button{
     border-width: 5px;
 }
 
+#userSubmit{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 10px;
+}
+
 button:hover{
     color: #c5cbe1;
 }
 
 button:active{
-    background-color: #ae6e55;
+    background-color: #353d33;
+    border: #ae6e55;
+    border-style: inset;
+    border-width: 5px;
 }
 
 .special{
@@ -143,9 +157,59 @@ button:active{
     font-weight: bold;
     text-shadow: 6px 6px 4px #ae6e55;
 
+    display: flex;
+    justify-content: center;
      
     padding: 100px;
-    padding-top: 100px;
     
     margin-top: 0px;
 }
+
+/* Contact page css */
+
+#divContact{
+    margin-top: 2%;
+    
+    background-color: #54645dc6;
+    
+    border: #ae6e55;
+    border-style: outset;
+    border-width: 10px;
+
+}
+
+label {
+    display: block;
+    margin-top: 5%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: aliceblue;
+    text-shadow: 3px 3px 2px #ae6e55;
+    font-weight: bold;
+    font-family: handlee, sans-serif;
+
+    display: flex;
+    justify-content: center;
+}
+
+input, textarea {
+    width: 30%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 2px solid #ae6e55;
+    border-radius: 4px;
+
+    margin: 5px auto;
+
+    display: block;
+    
+    display: flex;
+    justify-content: center;
+}
+
+#userMessage {
+    width: 1000px;        
+    height: 100px;         
+    resize: none;         
+}
+
