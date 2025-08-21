@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const email = document.getElementById("userEmail").value;
             const message = document.getElementById("userMessage").value;
             
-            // Log to console (keep this if you want)
+            // Log to console 
             console.log("First Name:", firstname);
             console.log("Last Name:", lastname);
             console.log("Email:", email);
@@ -77,3 +77,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+// End of contact page
