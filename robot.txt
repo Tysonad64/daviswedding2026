@@ -31,3 +31,4 @@ Allow: /*.svg
 
 # Sitemap location (you can create this later)
 # Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://www.yourdomain.com/sitemap.xml
