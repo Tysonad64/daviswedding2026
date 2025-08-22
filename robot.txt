@@ -1,0 +1,33 @@
+# robots.txt for The Davis Wedding 2026
+# This file tells search engines how to crawl your wedding website
+
+# Allow all search engines to access most of the site
+User-agent: *
+Allow: /
+
+# Block access to any admin or private areas (if you add them later)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /.github/
+
+# Optional: Block access to RSVP responses or contact form submissions
+# Uncomment these lines if you want to keep form pages private
+# Disallow: /rsvp.html
+# Disallow: /contact.html
+
+# Allow access to CSS, JS, and images for proper rendering
+Allow: /styles.css
+Allow: /index.js
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.gif
+Allow: /*.webp
+Allow: /*.svg
+
+# Crawl delay (optional - helps prevent server overload)
+# Crawl-delay: 1
+
+# Sitemap location (you can create this later)
+# Sitemap: https://yourdomain.com/sitemap.xml
