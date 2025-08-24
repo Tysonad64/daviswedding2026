@@ -3,19 +3,19 @@ document.addEventListener('DOMContentLoaded', function() {
         <form id="rsvpForm" class="rsvp-form">
             <div class="form-group">
                 <label for="rsvpName">Full Name *</label>
-                <input type="text" id="rsvpName" name="name" placeholder="Enter your full name" required>
+                <input type="text" id="rsvpName" name="name" autocomplete="name" placeholder="Enter your full name" required>
                 <div class="error-message" id="nameError"></div>
             </div>
             
             <div class="form-group">
                 <label for="rsvpEmail">Email *</label>
-                <input type="email" id="rsvpEmail" name="email" placeholder="Enter your email address" required>
+                <input type="email" id="rsvpEmail" name="email" autocomplete="email" placeholder="Enter your email address" required>
                 <div class="error-message" id="emailError"></div>
             </div>
             
             <div class="form-group">
                 <label for="guestCount">Number of Guests *</label>
-                <select id="guestCount" name="guestCount" required>
+                <select id="guestCount" name="guestCount" autocomplete="off" required>
                     <option value="" disabled selected>Select number of guests</option>
                     <option value="1">1 (Just Me)</option>
                     <option value="2">2 (Me +1)</option>
@@ -26,40 +26,40 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="error-message" id="guestCountError"></div>
             </div>
             
-            <div class="form-group">
-                <label>Which event will you attend? *</label>
+            <fieldset class="form-group">
+                <legend>Which event will you attend? *</legend>
                 <div class="radio-group">
-                    <label class="radio-option">
-                        <input type="radio" name="eventChoice" value="both" required>
-                        <span>Both Ceremony & Reception</span>
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="eventChoice" value="ceremony">
-                        <span>Ceremony Only</span>
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="eventChoice" value="reception">
-                        <span>Reception Only</span>
-                    </label>
+                    <div class="radio-option">
+                        <input type="radio" id="eventBoth" name="eventChoice" value="both" required>
+                        <label for="eventBoth">Both Ceremony & Reception</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="eventCeremony" name="eventChoice" value="ceremony">
+                        <label for="eventCeremony">Ceremony Only</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="eventReception" name="eventChoice" value="reception">
+                        <label for="eventReception">Reception Only</label>
+                    </div>
                 </div>
                 <div class="error-message" id="eventChoiceError"></div>
-            </div>
+            </fieldset>
             
             <div class="form-group">
                 <label for="dietRestrict">Dietary Restrictions</label>
-                <textarea id="dietRestrict" name="dietRestrict" placeholder="Please list any dietary restrictions or allergies"></textarea>
+                <textarea id="dietRestrict" name="dietRestrict" autocomplete="off" placeholder="Please list any dietary restrictions or allergies"></textarea>
             </div>
             
             <div class="form-group">
                 <label for="rsvpMessage">Message (Optional)</label>
-                <textarea id="rsvpMessage" name="message" placeholder="Leave us a message!"></textarea>
+                <textarea id="rsvpMessage" name="message" autocomplete="off" placeholder="Leave us a message!"></textarea>
             </div>
             
             <div class="form-actions">
                 <button type="submit" id="rsvpSubmit" class="btn btn-primary">Submit RSVP</button>
             </div>
             
-            <div id="formStatus" class="form-status"></div>
+            <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
         </form>
     `;
     
@@ -166,7 +166,7 @@ function handleFormSubmit(e) {
     setTimeout(() => {
         // Show success message
         formStatus.innerHTML = `
-            <div class="success-message">
+            <div class="success-message" role="alert">
                 <h3>Thank you for your RSVP, ${name}!</h3>
                 <p>We've received your response for ${guestCount} ${guestCount === '1' ? 'guest' : 'guests'}.</p>
                 ${eventChoice ? `<p>We look forward to seeing you at the ${getEventName(eventChoice.value)}!</p>` : ''}
