@@ -40,17 +40,19 @@ document.addEventListener('DOMContentLoaded', function() {
         
         <div class="form-group">
             <label>Which event(s) will you attend? *</label>
-            <div class="radio-option">
-                <input type="radio" id="option1" name="eventChoice" value="reception" required>
-                <label for="option1">Reception</label>
-            </div>
-            <div class="radio-option">
-                <input type="radio" id="option2" name="eventChoice" value="ceremony">
-                <label for="option2">Ceremony</label>
-            </div>
-            <div class="radio-option">
-                <input type="radio" id="option3" name="eventChoice" value="both">
-                <label for="option3">Both</label>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="option1" name="eventChoice" value="reception" required>
+                    <label for="option1">Reception</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="option2" name="eventChoice" value="ceremony">
+                    <label for="option2">Ceremony</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="option3" name="eventChoice" value="both">
+                    <label for="option3">Both</label>
+                </div>
             </div>
             <div class="error-message" id="eventError"></div>
         </div>
