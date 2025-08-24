@@ -1,81 +1,80 @@
-
-let firstname;
-let lastname;
-let email;
-let message;
-
-
-document.getElementById("userSubmit").onclick = function(){
-    firstname = document.getElementById("userFirst").value;
-    console.log(firstname);
-
-    lastname = document.getElementById("userLast").value;
-    console.log(lastname);
-    
-    email = document.getElementById("userEmail").value;
-    console.log(email);
-
-    message = document.getElementById("userMessage").value;
-    console.log(message);
-
-
-}
-
 document.addEventListener('DOMContentLoaded', function() {
-    const submitButton = document.getElementById("userSubmit");
+    const contactForm = document.getElementById('contactForm');
     
-    if (submitButton) {
-        submitButton.onclick = function() {
-            const firstname = document.getElementById("userFirst").value;
-            const lastname = document.getElementById("userLast").value;
-            const email = document.getElementById("userEmail").value;
-            const message = document.getElementById("userMessage").value;
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Log to console 
-            console.log("First Name:", firstname);
-            console.log("Last Name:", lastname);
-            console.log("Email:", email);
-            console.log("Message:", message);
+            // Reset error messages
+            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
             
-            // Basic validation
-            if (!firstname || !lastname || !email || !message) {
-                alert("Please fill out all fields!");
-                return;
+            // Get form values
+            const firstName = document.getElementById('userFirst').value.trim();
+            const lastName = document.getElementById('userLast').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+            const message = document.getElementById('userMessage').value.trim();
+            
+            // Validation
+            let isValid = true;
+            
+            if (!firstName) {
+                document.getElementById('firstNameError').textContent = 'Please enter your first name';
+                isValid = false;
             }
-
-            // Hide the form inputs but keep the container
-            const formElements = document.querySelectorAll('#divContact input, #divContact textarea, #divContact label, #divContact button');
-            formElements.forEach(element => {
-                element.style.display = 'none';
-            });
             
-            // Show and animate the success message
-            const successDiv = document.getElementById("successMessage");
-            successDiv.style.display = "block";
-            successDiv.classList.add("show");
+            if (!lastName) {
+                document.getElementById('lastNameError').textContent = 'Please enter your last name';
+                isValid = false;
+            }
             
-            // Reset after 3 seconds
-            setTimeout(function() {
-                // Hide success message
-                successDiv.classList.remove("show");
-                setTimeout(function() {
-                    successDiv.style.display = "none";
+            if (!email) {
+                document.getElementById('emailError').textContent = 'Please enter your email';
+                isValid = false;
+            } else if (!isValidEmail(email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                isValid = false;
+            }
+            
+            if (!message) {
+                document.getElementById('messageError').textContent = 'Please enter your message';
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // Show loading state
+                const submitButton = document.getElementById('userSubmit');
+                const originalButtonText = submitButton.textContent;
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+                
+                // Here you would typically send the form data to a server
+                // For now, we'll simulate a successful submission
+                setTimeout(() => {
+                    // Show success message
+                    const formStatus = document.getElementById('formStatus');
+                    formStatus.innerHTML = `
+                        <div class="success-message">
+                            <h3>Thank you, ${firstName}!</h3>
+                            <p>Your message has been received. We'll get back to you soon!</p>
+                        </div>
+                    `;
                     
-                    // Show form elements again
-                    formElements.forEach(element => {
-                        element.style.display = element.tagName === 'LABEL' ? 'flex' : 'block' 
-                                              element.tagName === 'BUTTON' ? 'flex' : 'block';
-                    });
+                    // Reset form
+                    contactForm.reset();
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalButtonText;
                     
-                    // Clear the form
-                    document.getElementById("userFirst").value = "";
-                    document.getElementById("userLast").value = "";
-                    document.getElementById("userEmail").value = "";
-                    document.getElementById("userMessage").value = "";
-                }, 300);
-            }, 3000);
-        }
+                    // Scroll to success message
+                    formStatus.scrollIntoView({ behavior: 'smooth' });
+                    
+                }, 1000);
+            }
+        });
+    }
+    
+    // Email validation helper function
+    function isValidEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
     }
 });
-
-// End of contact page

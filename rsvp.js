@@ -1,30 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const rsvpForm = document.createElement('form');
-    rsvpForm.id = 'rsvpForm';
-    
-    // Get the form container and replace it with our enhanced form
-    const formContainer = document.querySelector('#rsvpBox1');
-    formContainer.innerHTML = '';
-    formContainer.appendChild(rsvpForm);
-    
-    // Add the form content back into the new form
-    rsvpForm.innerHTML = `
-        <div class="notice-box">
-            <h2 id="importantHead">**IMPORTANT!**</h2>
-            <p class="important-para">Please fill out the entire form before clicking submit. You should have received an invitation that states the event/events you were invited for. <span id="instrucEmph">Please only select the option that is present on your invitation as the ceremony location is fairly small and there are limited seats and you will not be allowed in to the event that was not listed on your invitation.</span> If you were invited to both, please select the option that you plan on attending. We understand if you can not make it to both events and will miss you, but this will help us get an accurate head count and plan out spacing.</p> 
-            <h2 id="noticeHeader">*Notice*</h2>
-            <p class="important-para">We will do our best to accommodate all of the dietary restrictions that we can. We will have vegan and vegetarian options for the reception. We will of course find accommodations for all allergy restrictions.</p>
-        </div>
-        
+    const formContent = `
         <div class="form-group">
             <label for="rsvpName">Full Name *</label>
-            <input type="text" id="rsvpName" name="name" required>
+            <input type="text" id="rsvpName" name="name" placeholder="Enter your full name" required>
             <div class="error-message" id="nameError"></div>
         </div>
         
         <div class="form-group">
             <label for="rsvpEmail">Email *</label>
-            <input type="email" id="rsvpEmail" name="email" required>
+            <input type="email" id="rsvpEmail" name="email" placeholder="Enter your email address" required>
             <div class="error-message" id="emailError"></div>
         </div>
         
@@ -59,12 +43,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
         <div class="form-group">
             <label for="dietRestrict">Dietary or Allergy Restrictions</label>
-            <textarea id="dietRestrict" name="dietRestrict" rows="2" placeholder="Please list any dietary restrictions or allergies"></textarea>
+            <textarea id="dietRestrict" name="dietRestrict" rows="3" placeholder="Please list any dietary restrictions or allergies"></textarea>
         </div>
         
         <div class="form-group">
             <label for="rsvpMessage">Message (Optional)</label>
-            <textarea id="rsvpMessage" name="message" rows="3" placeholder="Send us a note!"></textarea>
+            <textarea id="rsvpMessage" name="message" rows="4" placeholder="Send us a note!"></textarea>
         </div>
         
         <div class="form-actions">
@@ -73,87 +57,128 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     `;
 
+    // Insert the form content
+    document.getElementById('rsvpFormContent').innerHTML = formContent;
+    
+    const form = document.getElementById('rsvpForm');
+    const formStatus = document.getElementById('formStatus');
+    
     // Form submission handler
-    rsvpForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Reset error messages
-        document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
-        
-        // Get form values
-        const name = document.getElementById('rsvpName').value.trim();
-        const email = document.getElementById('rsvpEmail').value.trim();
-        const guestCount = document.getElementById('guestCount').value;
-        const eventChoice = document.querySelector('input[name="eventChoice"]:checked');
-        const dietRestrict = document.getElementById('dietRestrict').value.trim();
-        const message = document.getElementById('rsvpMessage').value.trim();
-        
-        // Validation
-        let isValid = true;
-        
-        if (!name) {
-            document.getElementById('nameError').textContent = 'Please enter your name';
-            isValid = false;
-        }
-        
-        if (!email) {
-            document.getElementById('emailError').textContent = 'Please enter your email';
-            isValid = false;
-        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            document.getElementById('emailError').textContent = 'Please enter a valid email address';
-            isValid = false;
-        }
-        
-        if (!guestCount) {
-            document.getElementById('guestError').textContent = 'Please select number of guests';
-            isValid = false;
-        }
-        
-        if (!eventChoice) {
-            document.getElementById('eventError').textContent = 'Please select an event';
-            isValid = false;
-        }
-        
-        if (!isValid) return;
-        
-        // Show loading state
-        const submitBtn = document.getElementById('rsvpSubmit');
-        const originalBtnText = submitBtn.textContent;
+    form.addEventListener('submit', handleFormSubmit);
+});
+
+function handleFormSubmit(e) {
+    e.preventDefault();
+    
+    // Reset error messages and remove error classes
+    document.querySelectorAll('.error-message').forEach(el => {
+        el.textContent = '';
+    });
+    
+    document.querySelectorAll('input, select, textarea').forEach(el => {
+        el.classList.remove('error');
+    });
+    
+    // Get form elements
+    const name = document.getElementById('rsvpName').value.trim();
+    const email = document.getElementById('rsvpEmail').value.trim();
+    const guestCount = document.getElementById('guestCount').value;
+    const eventChoice = document.querySelector('input[name="eventChoice"]:checked');
+    const dietRestrict = document.getElementById('dietRestrict').value.trim();
+    const message = document.getElementById('rsvpMessage').value.trim();
+    const formStatus = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('rsvpSubmit');
+    
+    // Validate form
+    let isValid = true;
+    
+    // Name validation
+    if (!name) {
+        showError('nameError', 'Please enter your name');
+        document.getElementById('rsvpName').classList.add('error');
+        isValid = false;
+    }
+    
+    // Email validation
+    if (!email) {
+        showError('emailError', 'Please enter your email');
+        document.getElementById('rsvpEmail').classList.add('error');
+        isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+        showError('emailError', 'Please enter a valid email address');
+        document.getElementById('rsvpEmail').classList.add('error');
+        isValid = false;
+    }
+    
+    // Guest count validation
+    if (!guestCount) {
+        showError('guestError', 'Please select number of guests');
+        document.getElementById('guestCount').classList.add('error');
+        isValid = false;
+    }
+    
+    // Event choice validation
+    if (!eventChoice) {
+        showError('eventError', 'Please select an event');
+        isValid = false;
+    }
+    
+    if (isValid) {
+        // Disable submit button to prevent multiple submissions
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Submitting...';
+        submitBtn.textContent = 'Sending...';
         
-        // Simulate form submission (replace with actual API call)
+        // Prepare form data
+        const formData = {
+            name,
+            email,
+            guestCount,
+            eventChoice: eventChoice ? eventChoice.value : null,
+            dietRestrict,
+            message,
+            timestamp: new Date().toISOString()
+        };
+        
+        // In a real application, you would send the form data to a server here
+        // For now, we'll simulate a successful submission
         setTimeout(() => {
-            // In a real app, you would send this data to your server
-            console.log('Form submitted:', {
-                name,
-                email,
-                guestCount,
-                eventChoice: eventChoice ? eventChoice.value : null,
-                dietRestrict,
-                message
-            });
-            
             // Show success message
-            const formStatus = document.getElementById('formStatus');
             formStatus.innerHTML = `
                 <div class="success-message">
-                    <h3>Thank you, ${name}!</h3>
-                    <p>Your RSVP has been received. We look forward to celebrating with you!</p>
-                    <p>A confirmation has been sent to ${email}.</p>
+                    <h3>Thank you for your RSVP, ${name}!</h3>
+                    <p>We've received your response for ${guestCount} guest(s) for the ${getEventName(eventChoice.value)}.</p>
+                    <p>We look forward to celebrating with you on our special day!</p>
                 </div>
             `;
-            
-            // Reset form
-            rsvpForm.reset();
-            
-            // Reset button
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalBtnText;
-            
-            // Scroll to success message
+            formStatus.style.display = 'block';
             formStatus.scrollIntoView({ behavior: 'smooth' });
             
-        }, 1500);
-    });
-});
+            // Reset form
+            form.reset();
+            
+            // Re-enable submit button
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit RSVP';
+            
+            // Log the form data (in a real app, this would be sent to a server)
+            console.log('Form submitted:', formData);
+            
+        }, 1000);
+    }
+}
+
+function showError(elementId, message) {
+    const errorElement = document.getElementById(elementId);
+    if (errorElement) {
+        errorElement.textContent = message;
+    }
+}
+
+function getEventName(eventValue) {
+    switch(eventValue) {
+        case 'reception': return 'Reception';
+        case 'ceremony': return 'Ceremony';
+        case 'both': return 'both Ceremony and Reception';
+        default: return 'event';
+    }
+}

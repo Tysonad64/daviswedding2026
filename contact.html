@@ -3,42 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <title>Contact Us | Davis Wedding 2026</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Cookie&family=Handlee&family=Pompiere&family=Sofia&display=swap" rel="stylesheet">
-
-    
 </head>
 <body>
     <header>
-        <h1 id="contactHeader">Contact Us!</h1>
+        <h1 id="title">The Davis Wedding 2026</h1>
+        <div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="wedding-party.html">Wedding Party</a>
+                <a href="rsvp.html">RSVP</a>
+                <a href="registry.html">Registry</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
     </header>
 
-    <div id="divContact">
-        <div id="successMessage" style="display: none;">
-            <h3>Success!</h3>
-            <p>Thank you for your message! We'll get back to you soon.</p>
+    <main>
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p class="subtitle">We'd love to hear from you</p>
+            
+            <div id="formStatus"></div>
+            
+            <form id="contactForm" class="centered-form">
+                <div class="form-group">
+                    <label for="userFirst">First Name *</label>
+                    <input type="text" id="userFirst" name="firstName" placeholder="Enter your first name" required>
+                    <div class="error-message" id="firstNameError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="userLast">Last Name *</label>
+                    <input type="text" id="userLast" name="lastName" placeholder="Enter your last name" required>
+                    <div class="error-message" id="lastNameError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="userEmail">Email *</label>
+                    <input type="email" id="userEmail" name="email" placeholder="Enter your email address" required>
+                    <div class="error-message" id="emailError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="userMessage">Message *</label>
+                    <textarea id="userMessage" name="message" rows="4" placeholder="Type your message here..." required></textarea>
+                    <div class="error-message" id="messageError"></div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" id="userSubmit" class="btn-primary">Send Message</button>
+                </div>
+            </form>
         </div>
-        
-        <label for="userFirst">First Name</label>
-        <input id="userFirst" type="text" placeholder="First Name">
+    </main>
 
-        <label for="userLast">Last Name</label>
-        <input id="userLast" type="text" placeholder="Last Name">
-
-        <label for="userEmail">Email</label>
-        <input id="userEmail" type="email" placeholder="Email">
-
-        <label for="userMessage">Message</label>
-        <textarea id="userMessage" rows="4" placeholder="Write your message here."></textarea>
-        
-        
-        <button id="userSubmit">Submit</button>
-
+    <footer class="special">
+        <p>&copy; 2026 The Davis Wedding. All rights reserved.</p>
+    </footer>
+    <div class="decorative-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
     </div>
-
-    
-
     <script src="index.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>

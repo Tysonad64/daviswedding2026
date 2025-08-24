@@ -3,29 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSVP - Davis Wedding 2026</title>
+    <title>RSVP | Davis Wedding 2026</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Cookie&family=Handlee&family=Pompiere&family=Sofia&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1 id="rsvpHeader">RSVP</h1>
-        <nav>
-            <a href="index.html" class="link-style">Home</a>
-            <a href="about.html" class="link-style">About</a>
-            <a href="wedding-party.html" class="link-style">Wedding Party</a>
-            <a href="contact.html" class="link-style">Contact</a>
-        </nav>
+        <h1 id="title">The Davis Wedding 2026</h1>
+        <div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="wedding-party.html">Wedding Party</a>
+                <a href="rsvp.html">RSVP</a>
+                <a href="registry.html">Registry</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
     </header>
 
-    <div id="rsvpBox1" class="rsvp-container">
-        <!-- Content will be dynamically inserted by rsvp.js -->
-    </div>
+    <main>
+        <div class="container">
+            <h2>RSVP</h2>
+            <p class="subtitle">We hope you can join us on our special day</p>
+            
+            <div id="formStatus" class="form-status"></div>
+            
+            <form id="rsvpForm" class="wedding-form">
+                <div class="notice-box">
+                    <h3>**IMPORTANT!**</h3>
+                    <p>Please fill out the entire form before clicking submit. You should have received an invitation that states the event/events you were invited for. <span class="highlight">Please only select the option that is present on your invitation as the ceremony location is fairly small and there are limited seats and you will not be allowed in to the event that was not listed on your invitation.</span> If you were invited to both, please select the option that you plan on attending. We understand if you can not make it to both events and will miss you, but this will help us get an accurate head count and plan out spacing.</p> 
+                    <h3>*Notice*</h3>
+                    <p>We will do our best to accommodate all of the dietary restrictions that we can. We will have vegan and vegetarian options for the reception. We will of course find accommodations for all allergy restrictions.</p>
+                </div>
+                
+                <!-- Form content will be inserted here by rsvp.js -->
+                <div id="rsvpFormContent">
+                    <div class="form-group">
+                        <label for="rsvpName" class="form-label">Full Name *</label>
+                        <input type="text" id="rsvpName" name="name" class="form-input" placeholder="Enter your full name" required>
+                        <div class="error-message" id="nameError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="rsvpEmail" class="form-label">Email *</label>
+                        <input type="email" id="rsvpEmail" name="email" class="form-input" placeholder="Enter your email address" required>
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="guestCount" class="form-label">Number of Guests *</label>
+                        <select id="guestCount" name="guestCount" class="form-select" required>
+                            <option value="" disabled selected>Select number of guests</option>
+                            <option value="1">1 (Just Me)</option>
+                            <option value="2">2 (Me +1)</option>
+                        </select>
+                        <div class="error-message" id="guestError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Which event(s) will you attend? *</label>
+                        <div class="option-group">
+                            <div class="option-item">
+                                <input type="radio" id="option1" name="eventChoice" class="option-input" value="reception" required>
+                                <label for="option1" class="option-label">Reception</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="radio" id="option2" name="eventChoice" class="option-input" value="ceremony">
+                                <label for="option2" class="option-label">Ceremony</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="radio" id="option3" name="eventChoice" class="option-input" value="both">
+                                <label for="option3" class="option-label">Both</label>
+                            </div>
+                        </div>
+                        <div class="error-message" id="eventError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dietRestrict" class="form-label">Dietary or Allergy Restrictions</label>
+                        <textarea id="dietRestrict" name="dietRestrict" class="form-textarea" placeholder="Please list any dietary restrictions or allergies"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="rsvpMessage" class="form-label">Message (Optional)</label>
+                        <textarea id="rsvpMessage" name="message" class="form-textarea" placeholder="Send us a note!"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" id="rsvpSubmit" class="btn btn-primary">Submit RSVP</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
 
-    <footer>
+    <footer class="special">
         <p>&copy; 2026 The Davis Wedding. All rights reserved.</p>
     </footer>
-
+    <div class="decorative-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
     <script src="rsvp.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
