@@ -187,26 +187,63 @@ label {
     font-size: clamp(14px, 3.5vw, 16px);
 }
 
-/* Responsive form inputs */
-input, textarea {
-    width: min(90%, 400px); /* Responsive width with max */
+/* Form inputs, selects, and textareas */
+input, select, textarea {
+    width: min(90%, 400px);
     max-width: 400px;
     padding: 12px;
     margin: 5px auto 15px;
     border: 2px solid #ae6e55;
     border-radius: 4px;
     display: block;
-    font-size: 16px; /* Prevents zoom on iOS */
+    font-size: 16px;
+    font-family: 'Pompiere', cursive, sans-serif;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #333;
     box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
-/* Specific textarea sizing */
-#userMessage, #rsvpMessage {
-    width: min(90%, 600px);
-    max-width: 600px;
-    height: 100px;
-    resize: vertical; /* Allow vertical resize only */
-    min-height: 80px;
+/* Focus states */
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #d48e75;
+    box-shadow: 0 0 0 3px rgba(174, 110, 85, 0.3);
+}
+
+/* Placeholder text */
+::placeholder {
+    color: #888;
+    font-family: 'Pompiere', cursive, sans-serif;
+    opacity: 1;
+}
+
+/* Select dropdown arrow */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23666'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    padding-right: 35px;
+}
+
+/* Textarea specific */
+textarea {
+    min-height: 100px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+/* Radio and Checkbox inputs */
+input[type="radio"],
+input[type="checkbox"] {
+    width: auto;
+    margin: 0 10px 0 0;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 /* Preserve success message styling */
