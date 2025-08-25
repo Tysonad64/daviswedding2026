@@ -50,7 +50,7 @@ body {
   font-family: 'Pompiere', 'Handlee', cursive, sans-serif;
   line-height: 1.7;
   color: var(--dark-gray);
-  background: linear-gradient(-45deg, #3a5a4a, #2d3a2d, #5a8f7b, #e8a87c);
+  background: linear-gradient(-45deg, #3a5a4a, #2d3a2d, #5a8f7b, var(--light-peach));
   background-size: 400% 400%;
   min-height: 100vh;
   display: flex;
@@ -248,7 +248,7 @@ main {
 
 /* Header & Navigation */
 header {
-  background: linear-gradient(135deg, var(--light-peach), rgba(232, 208, 184, 0.95));
+  background: linear-gradient(135deg, var(--medium-green), var(--sage-green));
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   padding: 1.5rem 0;
   position: sticky;
@@ -305,7 +305,7 @@ header nav a.active::before {
 
 header.shrink {
   padding: 0.5rem 0;
-  background: rgba(232, 208, 184, 0.98);
+  background: linear-gradient(135deg, var(--medium-green), var(--sage-green));
   backdrop-filter: blur(5px);
 }
 
@@ -385,7 +385,7 @@ body.home-page nav a {
 /* Title styling */
 #title {
   color: var(--dark-green);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 3px var(--peach);
   margin: 0.5rem 0 0.5rem;
   padding: 0.5rem 0;
   position: relative;
@@ -498,7 +498,7 @@ textarea {
 
 /* Footer */
 footer {
-  background: linear-gradient(135deg, #3a5a4a, #f5d7bd);
+  background: linear-gradient(135deg, #3a5a4a, var(--soft-blue));
   color: var(--light-cream);
   padding: 2rem 0;
   text-align: center;
