@@ -4,9 +4,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const scrollThreshold = 50; // Start shrinking after 50px of scrolling
     
     function updateHeader() {
-        if (window.scrollY > scrollThreshold) {
-            header.classList.add('shrink');
+        // Only apply shrink effect on mobile devices (screen width <= 768px)
+        if (window.innerWidth <= 768) {
+            if (window.scrollY > scrollThreshold) {
+                header.classList.add('shrink');
+            } else {
+                header.classList.remove('shrink');
+            }
         } else {
+            // Ensure header is not shrunk on desktop
             header.classList.remove('shrink');
         }
     }
@@ -20,6 +26,13 @@ document.addEventListener('DOMContentLoaded', function() {
         window.cancelAnimationFrame(isScrolling);
         isScrolling = window.requestAnimationFrame(updateHeader);
     }, false);
+    
+    // Also update on window resize
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(updateHeader, 100);
+    });
     
     // Handle anchor links with smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
