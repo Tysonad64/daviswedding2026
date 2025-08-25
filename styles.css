@@ -267,36 +267,40 @@ header nav {
 }
 
 header nav a {
-  color: var(--dark-gray);
+  color: var(--dark-green);
+  text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.1);
   text-decoration: none;
   padding: 0.5rem 1rem;
   margin: 0 0.25rem;
-  border-radius: 20px;
-  transition: all 0.3s ease;
-  font-weight: 500;
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+}
+
+header nav a:hover,
+header nav a.active {
+  color: var(--sage-green);
+  text-shadow: none;
+  transform: translateY(-2px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 header nav a::before {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: 50%;
   width: 0;
   height: 2px;
   background: var(--gradient-primary);
-  transition: width 0.3s ease;
-}
-
-header nav a:hover,
-header nav a.active {
-  color: var(--sage-green);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
 }
 
 header nav a:hover::before,
 header nav a.active::before {
-  width: 100%;
+  width: 70%;
 }
 
 header.shrink {
@@ -336,7 +340,7 @@ nav a {
   font-size: 1.1rem;
   padding: 0.5rem 1rem;
   border-radius: 50px;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   background: rgba(255, 255, 255, 0.8);
   margin: 0.2rem;
   border: 1px solid rgba(227, 172, 147, 0.4);
@@ -359,7 +363,7 @@ nav a::before {
   width: 0;
   height: 2px;
   background: linear-gradient(90deg, var(--sage-green), var(--light-peach));
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateX(-50%);
 }
 
@@ -370,6 +374,7 @@ nav a:hover::before {
 nav a:hover {
   transform: translateY(-3px) scale(1.03);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body.home-page nav a {
@@ -380,6 +385,7 @@ body.home-page nav a {
 /* Title styling */
 #title {
   color: var(--dark-green);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   margin: 0.5rem 0 0.5rem;
   padding: 0.5rem 0;
   position: relative;
@@ -487,11 +493,12 @@ textarea {
   transform: translateY(-5px) scale(1.01);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
   border-color: var(--sage-green);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Footer */
 footer {
-  background: linear-gradient(135deg, #1e2a1e, #1a231a);
+  background: linear-gradient(135deg, #3a5a4a, #f5d7bd);
   color: var(--light-cream);
   padding: 2rem 0;
   text-align: center;
@@ -540,6 +547,27 @@ footer.special p {
   max-width: 800px;
   margin: 0 auto 1rem;
   color: rgba(252, 242, 223, 0.95);
+}
+
+footer.special #h3spec {
+  color: var(--light-peach);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+footer.special #specialPara {
+  color: var(--light-cream);
+}
+
+footer.special #specialPara a {
+  color: var(--light-peach);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer.special #specialPara a:hover {
+  color: white;
+  text-decoration: underline;
 }
 
 /* Ensure good contrast for all text */
@@ -755,13 +783,17 @@ input:invalid, select:invalid, textarea:invalid {
   position: relative;
   flex: 1;
   min-width: 120px;
+  cursor: pointer;
 }
 
 .radio-option input[type="radio"] {
   position: absolute;
   opacity: 0;
-  width: 0;
-  height: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .radio-option label {
@@ -778,6 +810,8 @@ input:invalid, select:invalid, textarea:invalid {
   font-weight: 500;
   transition: all 0.2s ease;
   min-height: 50px;
+  position: relative;
+  z-index: 0;
 }
 
 .radio-option input[type="radio"]:checked + label {
@@ -785,19 +819,140 @@ input:invalid, select:invalid, textarea:invalid {
   color: white;
 }
 
-.radio-option label:hover {
+.radio-option:hover label {
   background: rgba(137, 168, 131, 0.1);
 }
 
+.radio-option input[type="radio"]:checked:hover + label {
+  background: var(--sage-green);
+  opacity: 0.9;
+}
+
 /* Mobile responsiveness */
-@media (max-width: 768px) {
-  .radio-group {
-    flex-direction: column;
-    gap: 0.75rem;
+@media screen and (max-width: 768px) {
+  /* Base adjustments */
+  body {
+    font-size: 16px;
+    line-height: 1.6;
   }
   
-  .radio-option {
+  /* Container adjustments */
+  .container {
+    padding: 0 15px;
     width: 100%;
+  }
+  
+  /* Form elements */
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px; /* Prevents zoom on focus in iOS */
+  }
+  
+  /* Radio buttons */
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Buttons */
+  button, .button, .btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  /* Form layout */
+  .wedding-form {
+    padding: 15px;
+    margin: 10px 0;
+  }
+  
+  /* Header and navigation */
+  header nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+  }
+  
+  header nav a {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  
+  /* Adjust content spacing */
+  .content {
+    padding: 15px;
+  }
+  
+  /* Hide decorative elements on mobile */
+  .decoration {
+    display: none;
+  }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  /* Make form elements more touch-friendly */
+  input[type="text"],
+  input[type="email"],
+  select,
+  textarea {
+    padding: 14px;
+  }
+  
+  /* Adjust spacing */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Prevent zoom on mobile input focus */
+@media screen and (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+  
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23131313%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px auto;
+    padding-right: 30px;
+  }
+}
+
+/* Fix for iOS zoom on input focus */
+@supports (-webkit-overflow-scrolling: touch) {
+  input[type="text"],
+  input[type="email"],
+  select,
+  textarea {
+    font-size: 16px !important;
   }
 }
 
@@ -941,6 +1096,9 @@ textarea.error {
   font-size: 1.1rem;
   border-radius: 50px;
   cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   transition: all 0.3s ease;
   font-family: 'Handlee', cursive;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -1467,4 +1625,106 @@ pre {
 /* Remove default focus styles for mouse users but keep for keyboard navigation */
 *:focus:not(:focus-visible) {
   outline: none;
+}
+
+/* Page Load Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Loading Overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--light-cream);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.loading-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(62, 101, 86, 0.2);
+  border-radius: 50%;
+  border-top-color: var(--sage-green);
+  animation: spin 0.8s linear infinite;
+  position: relative;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.loading-spinner::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 4px solid transparent;
+  border-radius: 50%;
+  border-top-color: var(--light-peach);
+  animation: spin 1.2s linear infinite reverse;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Page Content Animation */
+body.loaded .container,
+body.loaded header,
+body.loaded footer {
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0; /* Start hidden */
+}
+
+/* Staggered Animation for Content */
+body.loaded .container {
+  animation-delay: 0.3s;
+}
+
+body.loaded header {
+  animation-delay: 0.1s;
+}
+
+body.loaded footer {
+  animation-delay: 0.5s;
+}
+
+/* Initial State - Only hide if JS is enabled */
+html.js .container,
+html.js header,
+html.js footer {
+  opacity: 0;
+}
+
+/* Add this to your HTML <html> tag: <html class="js"> */
+
+/* Ensure body doesn't scroll during loading */
+body.js-loading {
+  overflow: hidden;
+  height: 100vh;
 }
