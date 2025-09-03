@@ -39,11 +39,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: 
-    color 0.2s ease,
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 body {
@@ -251,7 +247,6 @@ header {
   background: linear-gradient(135deg, var(--medium-green), var(--sage-green));
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   padding: 1.5rem 0;
-  position: sticky;
   top: 0;
   z-index: 1000;
   backdrop-filter: blur(8px);
@@ -307,6 +302,7 @@ header.shrink {
   padding: 0.5rem 0;
   background: linear-gradient(135deg, var(--medium-green), var(--sage-green));
   backdrop-filter: blur(5px);
+  
 }
 
 header.shrink #title {
